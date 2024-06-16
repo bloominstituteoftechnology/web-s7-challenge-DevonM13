@@ -14,6 +14,23 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [4] sum('1', 2) // returns 3
     [5] sum('10', '3') // returns 13
   */
+  describe('sum function', () => {
+    test('numbers need to exist', () => {
+      expect(() => sum()).toThrow('pass valid numbers');
+    });
+    test('should be a valid number', () => {
+      expect(() => sum()).toThrow('pass valid numbers');
+    });
+    test('should add two numbers properly', () => {
+      expect(sum(1, 3)).toBe(4);
+    });
+    test('should add a string and a number properly', () => {
+      expect(sum('1', 2)).toBe(3);
+    });
+    test('should add two strings together properly', () => {
+      expect(sum('10', '3')).toBe(13);
+    });
+  });
 
   /*
   👉 TASK 2 - Integration Testing of HelloWorld component at the bottom of this module
@@ -29,10 +46,42 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [5] renders a text that reads "JavaScript is pretty awesome"
     [6] renders a text that includes "javaScript is pretty" (use exact = false)
   */
-  test('you can comment out this test', () => {
-    expect(true).toBe(false)
-  })
-})
+  describe('HelloWorld function', () => {
+    test('Renders a home link', () => {
+      render(<HelloWorld />);
+      const linkElement = screen.queryByText('Home');
+      expect(linkElement).toBeInTheDocument();
+      expect(linkElement).toHaveAttribute('href', '#');
+    });
+    test('Renders an about link', () => {
+      render(<HelloWorld />);
+      const linkElement = screen.queryByText('About');
+      expect(linkElement).toBeInTheDocument();
+      expect(linkElement).toHaveAttribute('href', '#');
+    });
+    test('Renders a blog link', () => {
+      render(<HelloWorld />);
+      const linkElement = screen.queryByText('Blog');
+      expect(linkElement).toBeInTheDocument();
+      expect(linkElement).toHaveAttribute('href', '#');
+    });
+    test('renders a text that reads the truth', () => {
+      render(<HelloWorld />);
+      expect(screen.queryByText('The Truth')).toBeInTheDocument();
+    });
+    test('renders a text that reads JavaScript is pretty awesome', () => {
+      render(<HelloWorld />);
+      expect(screen.queryByText('JavaScript is pretty awesome')).toBeInTheDocument();
+    });
+    test('renders a text that includes javaScript is pretty', () => {
+      render(<HelloWorld />);
+      expect(screen.queryByText('javaScript is pretty', { exact: false })).toBeInTheDocument();
+    });
+  });
+//   test('you can comment out this test', () => {
+//     expect(true).toBe(false)
+//   })
+// })
 
 function sum(a, b) {
   a = Number(a)
@@ -60,4 +109,4 @@ function HelloWorld() {
       </main>
     </div>
   )
-}
+}})
